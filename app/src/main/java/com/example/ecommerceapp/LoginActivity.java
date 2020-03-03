@@ -98,15 +98,22 @@ public class LoginActivity extends AppCompatActivity {
                             Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
                             startActivity(intent);
                         }
+                        else
+                        {
+                            loadingBar.dismiss();
+                            Toast.makeText(LoginActivity.this, "Password is wrong", Toast.LENGTH_SHORT).show();
+                        }
+
                     }
 
 
                 }
-                else{
+                else
+                    {
                     Toast.makeText(LoginActivity.this, "Account with this" +phone + "number donot exists", Toast.LENGTH_SHORT).show();
                     loadingBar.dismiss();
                     //Toast.makeText(LoginActivity.this, "You need to create a new Account", Toast.LENGTH_SHORT).show();
-                }
+                    }
 
 
             }
