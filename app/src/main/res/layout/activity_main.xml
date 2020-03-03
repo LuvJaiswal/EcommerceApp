@@ -15,7 +15,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginStart="51dp"
         android:layout_marginTop="86dp"
-        android:src="@drawable/index" />
+         />
 
     <TextView
         android:id="@+id/textView"

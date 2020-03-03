@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/loginbackground"
     tools:context=".LoginActivity">
 
 
@@ -14,7 +13,7 @@
         android:layout_height="100dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/index"
+        android:src="@color/colorAccent"
         android:layout_marginTop="41dp" />
 
     <EditText
@@ -81,11 +80,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="90dp"
             android:text="Forgor Password?"
             android:textColor="@color/colorPrimaryDark"
-            android:textStyle="bold"
-            android:layout_marginLeft="110dp"
-            />
+            android:textStyle="bold" />
     </LinearLayout>
 
     <Button
@@ -96,6 +94,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginStart="44dp"
         android:layout_marginTop="400dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
         android:background="@drawable/buttons"
         android:padding="20dp"
         android:text="Login"

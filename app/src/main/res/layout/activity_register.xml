@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity">
+
+
+    <ImageView
+        android:id="@+id/login_logo"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="41dp"
+        android:src="@color/colorAccent"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/Reg_ET_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Name"
+        android:textStyle="bold"
+        android:inputType="text"
+        android:textColor="@color/colorPrimaryDark"
+        android:background="@drawable/input_design"
+        android:padding="20dp"
+        android:layout_below="@id/login_logo"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        />
+
+    <EditText
+        android:id="@+id/Reg_ET_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Phone"
+        android:textStyle="bold"
+        android:inputType="text"
+        android:textColor="@color/colorPrimaryDark"
+        android:background="@drawable/input_design"
+        android:padding="20dp"
+        android:layout_below="@id/Reg_ET_name"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        />
+
+    <EditText
+        android:id="@+id/Reg_ET_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:textStyle="bold"
+        android:inputType="textPassword"
+        android:textColor="@color/colorPrimaryDark"
+        android:background="@drawable/input_design"
+        android:padding="20dp"
+        android:layout_below="@id/Reg_ET_phone"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        />
+
+    <Button
+        android:id="@+id/Reg_createAcc_Btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Reg_ET_password"
+        android:padding="20dp"
+        android:text="Create An Account"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:background="@drawable/buttons"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        />
+
+   <TextView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_below="@+id/Reg_createAcc_Btn"
+       android:layout_marginTop="20dp"
+       android:layout_marginLeft="180dp"
+       android:layout_marginRight="20dp"
+       android:text="already have an account!"
+       android:textStyle="bold|italic"
+       android:textSize="17sp"
+       android:onClick="tv_alreadyaccount"
+       />
+
+</RelativeLayout>
