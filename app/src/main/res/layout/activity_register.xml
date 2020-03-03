@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:hint="Phone"
         android:textStyle="bold"
-        android:inputType="text"
+        android:inputType="number"
         android:textColor="@color/colorPrimaryDark"
         android:background="@drawable/input_design"
         android:padding="20dp"
