@@ -6,7 +6,6 @@ public class Users {
 
     public Users()
     {
-
     }
 
     public Users(String name, String password, String phone) {
