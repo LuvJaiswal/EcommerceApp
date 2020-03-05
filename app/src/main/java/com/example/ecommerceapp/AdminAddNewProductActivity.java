@@ -55,6 +55,7 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
 
         categoryName = getIntent().getExtras().get("category").toString();
         ProductImageRef= FirebaseStorage.getInstance().getReference().child("Product Images");
+
         ProductsRef = FirebaseDatabase.getInstance().getReference().child("Products");
 
 
@@ -154,7 +155,7 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
         saveCurrentDate = currentDate.format(Calendar.getInstance().getTime());
 
         SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
-        saveCurrentTime = currentDate.format(Calendar.getInstance().getTime());
+        saveCurrentTime = currentTime.format(Calendar.getInstance().getTime());
 
         productRandomKey = saveCurrentDate + saveCurrentTime ;
 
@@ -181,6 +182,7 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
                         if(!task.isSuccessful()){
                             throw task.getException();
                         }
+
                         downloadImageUrl = filePath.getDownloadUrl().toString();
                         return filePath.getDownloadUrl();
                     }
@@ -221,11 +223,10 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()){
-                        Intent intent = new Intent(AdminAddNewProductActivity.this,AdminCategoryActivity.class);
-                        startActivity(intent);
-
                         loadingBar.dismiss();
                         Toast.makeText(AdminAddNewProductActivity.this, "Product is added Successfully...", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(AdminAddNewProductActivity.this,AdminCategoryActivity.class);
+                        startActivity(intent);
                     }
                     else{
                         loadingBar.dismiss();
