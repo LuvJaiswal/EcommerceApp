@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AdminCategoryActivity">
+
+    <TextView
+        android:id="@+id/tv_admin_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add new Products"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="30dp"
+        android:textSize="27sp"
+        android:textStyle="bold|italic"
+        android:textAlignment="center"
+        tools:ignore="InvalidId" />
+
+    <LinearLayout
+        android:id="@+id/Linear1_category_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_admin_category"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_marginTop="45dp">
+
+        <ImageView
+            android:id="@+id/kurtha"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/kurtha"
+            />
+
+        <ImageView
+            android:id="@+id/lehnga"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/lehnga"
+            />
+
+        <ImageView
+            android:id="@+id/Saree"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/sari"
+            />
+    </LinearLayout>
+
+
+
+
+
+</RelativeLayout>
