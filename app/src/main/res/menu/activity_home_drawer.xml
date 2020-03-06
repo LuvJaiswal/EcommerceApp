@@ -25,6 +25,8 @@
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_directions_run_black_24dp"
             android:title="@string/logout" />
+
+
     </group>
 
     <item android:title="Communicate">
