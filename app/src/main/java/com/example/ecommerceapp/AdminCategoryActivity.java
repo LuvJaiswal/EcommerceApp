@@ -24,6 +24,9 @@ public class AdminCategoryActivity extends AppCompatActivity {
         Saree =(ImageView)findViewById(R.id.saree);
 
 
+
+
+
         Kurtha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
