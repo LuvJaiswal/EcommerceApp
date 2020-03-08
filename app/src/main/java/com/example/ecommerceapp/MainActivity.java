@@ -95,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
                             loadingBar.dismiss();
 
                             Intent intent = new Intent(MainActivity.this,HomeActivity.class);
+                            Prevalent.currentOnlineUser = usersData; //necessary work to remember password without rerun
                             startActivity(intent);
                         }
                         else
