@@ -6,6 +6,7 @@ import android.os.Bundle;
 import com.example.ecommerceapp.Model.Products;
 import com.example.ecommerceapp.Prevalent.Prevalent;
 import com.example.ecommerceapp.ViewHolder.ProductViewHolder;
+import com.example.ecommerceapp.ui.tools.ToolsFragment;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -172,7 +173,10 @@ public class HomeActivity extends AppCompatActivity   implements NavigationView.
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();
-
+        }
+        else if (id == R.id.nav_tools){
+            Intent intent = new Intent(HomeActivity.this, SettingsActivity.class);
+            startActivity(intent);
         }
 
         return false;
