@@ -6,6 +6,7 @@ import android.os.Bundle;
 import com.example.ecommerceapp.Model.Products;
 import com.example.ecommerceapp.Prevalent.Prevalent;
 import com.example.ecommerceapp.ViewHolder.ProductViewHolder;
+import com.example.ecommerceapp.ui.gallery.GalleryFragment;
 import com.example.ecommerceapp.ui.tools.ToolsFragment;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -17,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -68,16 +70,16 @@ public class HomeActivity extends AppCompatActivity   implements NavigationView.
         setSupportActionBar(toolbar);
 
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-
-
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+//        FloatingActionButton fab = findViewById(R.id.fab);
+//
+//
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
 
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -106,7 +108,7 @@ public class HomeActivity extends AppCompatActivity   implements NavigationView.
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
-                R.id.nav_tools, R.id.nav_share, R.id.nav_send)
+                R.id.nav_tools,R.id.nav_Setting ,R.id.nav_share, R.id.nav_send)
                 .setDrawerLayout(drawer)
                 .build();
 
@@ -165,7 +167,11 @@ public class HomeActivity extends AppCompatActivity   implements NavigationView.
 
 
     public boolean onNavigationItemSelected(MenuItem item) {
+
+        Fragment fragment =null;
+
         int id = item.getItemId();
+
 
         if ((id == R.id.nav_logout)) {
             Paper.book().destroy();
@@ -174,7 +180,12 @@ public class HomeActivity extends AppCompatActivity   implements NavigationView.
             startActivity(intent);
             finish();
         }
-        else if (id == R.id.nav_tools){
+
+        else if (id == R.id.nav_gallery){
+            fragment =new GalleryFragment();
+        }
+
+        else if((id == R.id.nav_Setting)){
             Intent intent = new Intent(HomeActivity.this, SettingsActivity.class);
             startActivity(intent);
         }
