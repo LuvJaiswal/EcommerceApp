@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CartActivity">
+
+
+    <RelativeLayout
+        android:id="@+id/R1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:layout_alignParentTop="true">
+
+
+        <TextView
+            android:id="@+id/total_price"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="TotalPrice = "
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            android:layout_marginTop="15dp"
+            />
+
+<!--        <TextView-->
+<!--            android:id="@+id/cart_item_name"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Name"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textSize="20sp"-->
+<!--            android:textColor="@android:color/white"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_marginTop="15dp"-->
+<!--            />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/cart_item_price"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Total Price"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textSize="20sp"-->
+<!--            android:textColor="@android:color/white"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_below="@+id/cart_item_name"-->
+<!--            android:layout_marginTop="15dp"-->
+<!--            />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/cart_item_description"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Description"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textSize="20sp"-->
+<!--            android:textColor="@android:color/white"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_below="@+id/cart_item_price"-->
+<!--            android:layout_marginTop="15dp"-->
+<!--            />-->
+    </RelativeLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cart_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/R1"
+        android:layout_above="@+id/next_process_btn"
+        />
+
+    <Button
+        android:id="@+id/next_process_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:text="Next"
+        android:layout_alignParentBottom="true"
+        />
+
+
+
+
+
+</RelativeLayout>
