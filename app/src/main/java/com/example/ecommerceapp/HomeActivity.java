@@ -140,6 +140,10 @@ public class HomeActivity extends AppCompatActivity   implements NavigationView.
                 holder.txtProductDescription.setText(model.getDescription());
                 holder.txtProductPrice.setText("Price = Rs." +model.getPrice());
                 Picasso.get().load(model.getImage()).into(holder.imageView);
+
+
+                
+
             }
 
             @NonNull
