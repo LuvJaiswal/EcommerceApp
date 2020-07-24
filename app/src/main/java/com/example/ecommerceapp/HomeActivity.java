@@ -1,5 +1,7 @@
 package com.example.ecommerceapp;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -17,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.core.view.GravityCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -30,14 +33,15 @@ import com.squareup.picasso.Picasso;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.Menu;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import java.security.acl.LastOwnerException;
 
@@ -46,27 +50,25 @@ import io.paperdb.Paper;
 
 public class HomeActivity extends AppCompatActivity   implements NavigationView.OnNavigationItemSelectedListener {
 
-    private AppBarConfiguration mAppBarConfiguration;
+    private DatabaseReference ProductRef;
 
-    private DatabaseReference ProductsRef;
+    //Variables
+    DrawerLayout drawerLayout;
     private RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
+
+    NavigationView navigationView;
+    android.widget.Toolbar toolbar;
+    ImageView imageViewServicing;
+    ImageView imageViewEmergency;
+    private Toolbar supportActionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        ProductsRef = FirebaseDatabase.getInstance().getReference().child("Products");
-
-
-        Paper.init(this);
-
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Home");
-        setSupportActionBar(toolbar);
-
+        ProductRef = FirebaseDatabase.getInstance().getReference().child("Products");
 
         FloatingActionButton fab = findViewById(R.id.fab);
 
@@ -79,58 +81,111 @@ public class HomeActivity extends AppCompatActivity   implements NavigationView.
             }
         });
 
+        recyclerView = findViewById(R.id.recycler_menu);
+        recyclerView.setHasFixedSize(true);
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
 
-        View headerView=navigationView.getHeaderView(0);
+//        Toast.makeText(this, "Welcome :" + Prevalent.currentOnlineUser.getName()
+//                , Toast.LENGTH_SHORT).show();
 
-        TextView userNameTextView = headerView.findViewById(R.id.username);
+        /*
 
-        CircleImageView profileImageView = headerView.findViewById(R.id.profile_image);
+        imageViewEmergency = findViewById(R.id.emergency);
+        imageViewEmergency.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainPage.this,Bike.class);
+                startActivity(intent);
+            }
+        });
+        imageViewServicing = findViewById(R.id.service);
+        imageViewServicing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainPage.this,Bike.class);
+                startActivity(intent);
+            }
+        });
+        //Hooks
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
 
-        userNameTextView.setText(Prevalent.currentOnlineUser.getName());
+        toolbar = findViewById(R.id.toolbar);
 
-            recyclerView =findViewById(R.id.recycler_menu);
-            recyclerView.setHasFixedSize(true);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-            layoutManager = new LinearLayoutManager(this);
-            recyclerView.setLayoutManager(layoutManager);
-
-        Toast.makeText(this, "Welcome :" + Prevalent.currentOnlineUser.getName()
-                , Toast.LENGTH_SHORT).show();
+*/
 
 
-
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
-                R.id.nav_tools, R.id.nav_share, R.id.nav_send)
-                .setDrawerLayout(drawer)
-                .build();
-
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-
-        NavigationUI.setupWithNavController(navigationView, navController);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.home, menu);
-        return true;
-    }
+
+//    public void setSupportActionBar(Toolbar toolbar) {
+//        this.supportActionBar = supportActionBar;
+//
+//        //Navigation Drawer Menu
+//
+//
+//        //Hide or show items
+//        Menu menu = navigationView.getMenu();
+//        menu.findItem(R.id.nav_logout).setVisible(true);
+//        menu.findItem(R.id.nav_profile).setVisible(true);
+//
+//
+//        navigationView.bringToFront();
+//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+//        drawerLayout.addDrawerListener(toggle);
+//        toggle.syncState();
+//
+//        navigationView.setNavigationItemSelectedListener(this);
+//
+//        navigationView.setCheckedItem(R.id.nav_home);
+//
+//    }
+
+
+
+
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//
+//        FirebaseRecyclerOptions<Products> options =
+//                new FirebaseRecyclerOptions.Builder<Products>()
+//                .setQuery(ProductRef, Products.class)
+//                .build();
+//
+//        FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter = new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
+//            @Override
+//            protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull Products model) {
+//                holder.txtProductName.setText(model.getPname());
+//                holder.txtProductDescription.setText(model.getDescription());
+//                holder.txtProductPrice.setText("Price = " + model.getPrice() + "Rs.");
+//            }
+//
+//            @NonNull
+//            @Override
+//            public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+//                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_service_detail, parent, false);
+//                ProductViewHolder holder = new ProductViewHolder(view);
+//                return holder;
+//            }
+//        };
+//
+//        recyclerView.setAdapter(adapter);
+//        adapter.startListening();
+//    }
 
     @Override
     protected void onStart() {
         super.onStart();
         FirebaseRecyclerOptions<Products>options =
                 new FirebaseRecyclerOptions.Builder<Products>()
-                .setQuery(ProductsRef,Products.class)
-                .build();
+                        .setQuery(ProductRef,Products.class)
+                        .build();
 
         FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter = new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
             @Override
@@ -138,7 +193,7 @@ public class HomeActivity extends AppCompatActivity   implements NavigationView.
             {
                 holder.txtProductName.setText(model.getPname());
                 holder.txtProductDescription.setText(model.getDescription());
-                holder.txtProductPrice.setText("Price = Rs." +model.getPrice());
+                holder.txtProductPrice.setText("Price = रू  " +model.getPrice());
                 Picasso.get().load(model.getImage()).into(holder.imageView);
 
 
@@ -158,7 +213,6 @@ public class HomeActivity extends AppCompatActivity   implements NavigationView.
             @Override
             public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_items_layout,parent,false);
-
                 ProductViewHolder holder = new ProductViewHolder(view);
                 return holder;
             }
@@ -168,29 +222,45 @@ public class HomeActivity extends AppCompatActivity   implements NavigationView.
         adapter.startListening();
     }
 
+
     @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-                || super.onSupportNavigateUp();
+    public void onBackPressed() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Do you want to Exit");
+        builder.setCancelable(true);
+        builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+            }
+        });
+        builder.setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
-    public boolean onNavigationItemSelected(MenuItem item) {
-        int id = item.getItemId();
+        switch (menuItem.getItemId()) {
+            case R.id.nav_home:
+                break;
 
-        if ((id == R.id.nav_logout)) {
-            Paper.book().destroy();
-            Intent intent = new Intent(HomeActivity.this, MainActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-            finish();
-        }
-        else if (id == R.id.nav_tools){
-            Intent intent = new Intent(HomeActivity.this, SettingsActivity.class);
-            startActivity(intent);
+
+            case R.id.nav_share:
+                Toast.makeText(this, "Share", Toast.LENGTH_SHORT).show();
+                break;
         }
 
-        return false;
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
     }
 }
