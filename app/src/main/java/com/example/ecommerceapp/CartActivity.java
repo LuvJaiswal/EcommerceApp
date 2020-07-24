@@ -1,22 +1,29 @@
 package com.example.ecommerceapp;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ecommerceapp.Model.Cart;
 import com.example.ecommerceapp.Prevalent.Prevalent;
 import com.example.ecommerceapp.ViewHolder.CartViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -61,11 +68,67 @@ public class CartActivity extends AppCompatActivity {
         FirebaseRecyclerAdapter<Cart, CartViewHolder> adapter
                 = new FirebaseRecyclerAdapter<Cart, CartViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull CartViewHolder holder, int position, @NonNull Cart model)
+            protected void onBindViewHolder(@NonNull CartViewHolder holder, int position, @NonNull final Cart model)
             {
                 holder.txtProductQuantity.setText("Quantity = " + model.getQuantity());
                 holder.txtProductPrice.setText("Price = " + model.getPrice());
                 holder.txtProductName.setText("Product Name = " + model.getPname());
+
+
+
+                //manging the cart by users for edit and delete
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        CharSequence options[] = new CharSequence[]{
+
+                                "Edit",
+                                "Delete"
+                        };
+
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(CartActivity.this);
+                        builder.setTitle("Your Options:");
+
+                        builder.setItems(options, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                if (which == 0) {
+                                    Intent intent = new Intent(CartActivity.this, ProductDetailsActivity.class);
+
+                                    intent.putExtra("pid", model.getPid());
+                                    startActivity(intent);
+
+                                }
+
+                                if (which == 1){
+                                    cartListRef.child("User View")
+                                            .child(Prevalent.currentOnlineUser.getPhone())
+                                            .child("Products")
+                                            .child(model.getPid())
+                                            .removeValue()
+                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+
+                                                    if (task.isSuccessful()){
+                                                        Toast.makeText(CartActivity.this, "your item in cart is removed", Toast.LENGTH_SHORT).show();
+                                                        Intent intent = new Intent(CartActivity.this, HomeActivity.class);
+
+                                                        intent.putExtra("pid", model.getPid());
+                                                        startActivity(intent);
+                                                    }
+                                                }
+                                            });
+
+
+                                }
+                            }
+                        });
+                        builder.show();
+
+                    }
+                });
 
 
             }
