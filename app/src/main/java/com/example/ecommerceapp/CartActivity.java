@@ -34,6 +34,8 @@ public class CartActivity extends AppCompatActivity {
     private Button NextProcessBtn;
     private TextView txtTotalAmount;
 
+    private int sumtotalPrice = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,18 @@ public class CartActivity extends AppCompatActivity {
         NextProcessBtn = (Button)findViewById(R.id.next_process_btn);
         txtTotalAmount = (TextView)findViewById(R.id.total_price);
 
+        NextProcessBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                txtTotalAmount.setText("Total Price = रू " +String.valueOf(sumtotalPrice));
+
+                Intent intent = new Intent(CartActivity.this,ConfirmOrder.class);
+                intent.putExtra("Total Price",String.valueOf(sumtotalPrice));
+                startActivity(intent);
+                finish();
+            }
+        });
 
     }
 
@@ -75,8 +89,14 @@ public class CartActivity extends AppCompatActivity {
                 holder.txtProductName.setText("Product Name = " + model.getPname());
 
 
+                try{
+                    //for price
+                    int singleProductPrice =((Integer.valueOf(model.getPrice()))) * Integer.valueOf(model.getQuantity());
+                    sumtotalPrice = sumtotalPrice + singleProductPrice;
+                } catch(NumberFormatException ex) { // handle your exception
 
-                //manging the cart by users for edit and delete
+                }
+                    //manging the cart by users for edit and delete
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
