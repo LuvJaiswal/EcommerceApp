@@ -51,8 +51,38 @@
             />
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/Linear4_Check_Orders"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Linear1_category_layout"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="146dp"
+        android:gravity="center"
+        android:orientation="horizontal">
 
 
+        <Button
+            android:id="@+id/chek_orders_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_marginLeft="5dp"
+            android:background="@color/colorPrimary"
+            android:padding="10dp"
+            android:text="Check Orders" />
+
+        <Button
+            android:id="@+id/logout_admin_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:background="@color/colorPrimary"
+            android:text="Logout Admin" />
+
+
+    </LinearLayout>
 
 
 </RelativeLayout>

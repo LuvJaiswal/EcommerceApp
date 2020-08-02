@@ -5,12 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 public class AdminCategoryActivity extends AppCompatActivity {
 
-    private ImageView Kurtha,Lehnga,Saree;
+    private ImageView Kurtha, Lehnga, Saree;
+
+    private Button checkOrdersBtn, logoutAdminBtn;
 
 
     @Override
@@ -19,19 +22,40 @@ public class AdminCategoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin_category);
         Toast.makeText(this, "Welcome Admin", Toast.LENGTH_SHORT).show();
 
-        Kurtha =(ImageView)findViewById(R.id.kurtha) ;
-        Lehnga =(ImageView)findViewById(R.id.lehnga);
-        Saree =(ImageView)findViewById(R.id.saree);
+        checkOrdersBtn = (Button) findViewById(R.id.chek_orders_btn);
+        logoutAdminBtn = (Button) findViewById(R.id.logout_admin_btn);
 
 
+        logoutAdminBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminCategoryActivity.this, LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+            }
+        });
 
+
+        checkOrdersBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminCategoryActivity.this, AdminCheckOrders.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        });
+
+        Kurtha = (ImageView) findViewById(R.id.kurtha);
+        Lehnga = (ImageView) findViewById(R.id.lehnga);
+        Saree = (ImageView) findViewById(R.id.saree);
 
 
         Kurtha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AdminCategoryActivity.this,AdminAddNewProductActivity.class);
-                intent.putExtra("category","kurtha");
+                Intent intent = new Intent(AdminCategoryActivity.this, AdminAddNewProductActivity.class);
+                intent.putExtra("category", "kurtha");
                 startActivity(intent);
             }
         });
@@ -39,8 +63,8 @@ public class AdminCategoryActivity extends AppCompatActivity {
         Lehnga.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AdminCategoryActivity.this,AdminAddNewProductActivity.class);
-                intent.putExtra("category","saree");
+                Intent intent = new Intent(AdminCategoryActivity.this, AdminAddNewProductActivity.class);
+                intent.putExtra("category", "saree");
                 startActivity(intent);
             }
         });
@@ -48,12 +72,20 @@ public class AdminCategoryActivity extends AppCompatActivity {
         Saree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AdminCategoryActivity.this,AdminAddNewProductActivity.class);
-                intent.putExtra("category","saree");
+                Intent intent = new Intent(AdminCategoryActivity.this, AdminAddNewProductActivity.class);
+                intent.putExtra("category", "saree");
                 startActivity(intent);
             }
         });
 
 
+
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, MainActivity.class));
+        moveTaskToBack(true);
     }
 }
