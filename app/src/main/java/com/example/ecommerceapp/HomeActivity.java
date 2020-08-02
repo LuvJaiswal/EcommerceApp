@@ -39,6 +39,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.Menu;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
@@ -48,9 +49,10 @@ import java.security.acl.LastOwnerException;
 import de.hdodenhof.circleimageview.CircleImageView;
 import io.paperdb.Paper;
 
-public class HomeActivity extends AppCompatActivity   implements NavigationView.OnNavigationItemSelectedListener {
+public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DatabaseReference ProductRef;
+    private SearchView searchView;
 
     //Variables
     DrawerLayout drawerLayout;
@@ -68,6 +70,7 @@ public class HomeActivity extends AppCompatActivity   implements NavigationView.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+
         ProductRef = FirebaseDatabase.getInstance().getReference().child("Products");
 
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -76,7 +79,7 @@ public class HomeActivity extends AppCompatActivity   implements NavigationView.
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this,CartActivity.class);
+                Intent intent = new Intent(HomeActivity.this, CartActivity.class);
                 startActivity(intent);
             }
         });
@@ -147,8 +150,6 @@ public class HomeActivity extends AppCompatActivity   implements NavigationView.
 //    }
 
 
-
-
 //    @Override
 //    protected void onStart() {
 //        super.onStart();
@@ -182,25 +183,24 @@ public class HomeActivity extends AppCompatActivity   implements NavigationView.
     @Override
     protected void onStart() {
         super.onStart();
-        FirebaseRecyclerOptions<Products>options =
+        FirebaseRecyclerOptions<Products> options =
                 new FirebaseRecyclerOptions.Builder<Products>()
-                        .setQuery(ProductRef,Products.class)
+                        .setQuery(ProductRef, Products.class)
                         .build();
 
         FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter = new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Products model)
-            {
+            protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Products model) {
                 holder.txtProductName.setText(model.getPname());
                 holder.txtProductDescription.setText(model.getDescription());
-                holder.txtProductPrice.setText("Price = रू  " +model.getPrice());
+                holder.txtProductPrice.setText("Price = रू  " + model.getPrice());
                 Picasso.get().load(model.getImage()).into(holder.imageView);
 
 
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(HomeActivity.this,ProductDetailsActivity.class);
+                        Intent intent = new Intent(HomeActivity.this, ProductDetailsActivity.class);
                         intent.putExtra("pid", model.getPid());
                         startActivity(intent);
                     }
@@ -212,7 +212,7 @@ public class HomeActivity extends AppCompatActivity   implements NavigationView.
             @NonNull
             @Override
             public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_items_layout,parent,false);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_items_layout, parent, false);
                 ProductViewHolder holder = new ProductViewHolder(view);
                 return holder;
             }
@@ -232,7 +232,7 @@ public class HomeActivity extends AppCompatActivity   implements NavigationView.
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 finish();
             }
