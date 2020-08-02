@@ -34,7 +34,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private ElegantNumberButton numberButton;
     private Button add_to_cart;
 
-    private String productID = "" ;
+    private String productID = "", state = "Normal" ;
 
 
 
@@ -61,10 +61,24 @@ public class ProductDetailsActivity extends AppCompatActivity {
             public void onClick(View v) {
 
               addingToCartList();
+                if (state.equals("Order Placed") || state.equals("Order Shipped")){
+                    Toast.makeText(ProductDetailsActivity.this, "You can purchase more product after your order be confirmed or shipped", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    addingToCartList();
+                }
+
 
             }
         });
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        CheckOrder();
     }
 
     private void addingToCartList() {
@@ -139,6 +153,46 @@ public class ProductDetailsActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void CheckOrder(){
+        DatabaseReference myOrdersRef;
+
+        myOrdersRef = FirebaseDatabase.getInstance().getReference()
+                .child("Take Orders")
+                .child(Prevalent.currentOnlineUser.getPhone());
+
+        myOrdersRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    String shippingstate = dataSnapshot.child("state").getValue().toString();
+
+
+                    if (shippingstate.equals("shipped")){
+
+                        state = "Order Shipped";
+
+                    }
+
+                    if (shippingstate.equals("not shipped")){
+
+                        state = "Order Placed";
+
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+    }
+
+
 
 
 }
