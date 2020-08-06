@@ -9,14 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ShowProducts"></activity>
+        <activity android:name=".SearchActivity"></activity>
+        <activity android:name=".ShowProducts" />
         <activity android:name=".AdminCheckOrders" />
         <activity android:name=".ConfirmOrder" />
         <activity android:name=".CartActivity" />
         <activity android:name=".ProductDetailsActivity" />
-        <activity android:name=".SettingsActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            />
+        <activity
+            android:name=".SettingsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"

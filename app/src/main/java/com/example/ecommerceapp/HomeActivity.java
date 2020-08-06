@@ -284,6 +284,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(profile);
                 break;
 
+            case R.id.nav_send:
+                Intent search = new Intent(HomeActivity.this, SearchActivity.class);
+                startActivity(search);
+                break;
+
         }
 
         drawerLayout.closeDrawer(GravityCompat.START);
