@@ -49,7 +49,7 @@ import java.security.acl.LastOwnerException;
 import de.hdodenhof.circleimageview.CircleImageView;
 import io.paperdb.Paper;
 
-public class HomeActivity extends AppCompatActivity   implements NavigationView.OnNavigationItemSelectedListener {
+public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DatabaseReference ProductRef;
 
@@ -71,13 +71,17 @@ public class HomeActivity extends AppCompatActivity   implements NavigationView.
 
         ProductRef = FirebaseDatabase.getInstance().getReference().child("Products");
 
+
         drawerLayout = findViewById(R.id.drawer_layout);
         setSupportActionBar(toolbar);
 
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
         FloatingActionButton fab = findViewById(R.id.fab);
 
@@ -85,7 +89,7 @@ public class HomeActivity extends AppCompatActivity   implements NavigationView.
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this,CartActivity.class);
+                Intent intent = new Intent(HomeActivity.this, CartActivity.class);
                 startActivity(intent);
             }
         });
@@ -132,7 +136,7 @@ public class HomeActivity extends AppCompatActivity   implements NavigationView.
     }
 
 
-//    public void setSupportActionBar(Toolbar toolbar) {
+    //    public void setSupportActionBar(Toolbar toolbar) {
 //        this.supportActionBar = supportActionBar;
 //
 //        //Navigation Drawer Menu
@@ -154,8 +158,6 @@ public class HomeActivity extends AppCompatActivity   implements NavigationView.
 //        navigationView.setCheckedItem(R.id.nav_home);
 //
 //    }
-
-
 
 
 //    @Override
@@ -191,25 +193,24 @@ public class HomeActivity extends AppCompatActivity   implements NavigationView.
     @Override
     protected void onStart() {
         super.onStart();
-        FirebaseRecyclerOptions<Products>options =
+        FirebaseRecyclerOptions<Products> options =
                 new FirebaseRecyclerOptions.Builder<Products>()
-                        .setQuery(ProductRef,Products.class)
+                        .setQuery(ProductRef, Products.class)
                         .build();
 
         FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter = new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Products model)
-            {
+            protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Products model) {
                 holder.txtProductName.setText(model.getPname());
                 holder.txtProductDescription.setText(model.getDescription());
-                holder.txtProductPrice.setText("Price = रू  " +model.getPrice());
+                holder.txtProductPrice.setText("Price = रू  " + model.getPrice());
                 Picasso.get().load(model.getImage()).into(holder.imageView);
 
 
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(HomeActivity.this,ProductDetailsActivity.class);
+                        Intent intent = new Intent(HomeActivity.this, ProductDetailsActivity.class);
                         intent.putExtra("pid", model.getPid());
                         startActivity(intent);
                     }
@@ -221,7 +222,7 @@ public class HomeActivity extends AppCompatActivity   implements NavigationView.
             @NonNull
             @Override
             public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_items_layout,parent,false);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_items_layout, parent, false);
                 ProductViewHolder holder = new ProductViewHolder(view);
                 return holder;
             }
@@ -234,48 +235,61 @@ public class HomeActivity extends AppCompatActivity   implements NavigationView.
 
     @Override
     public void onBackPressed() {
-//        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//        builder.setMessage("Do you want to Exit");
-//        builder.setCancelable(true);
-//        builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                startActivity(intent);
-//                finish();
-//            }
-//        });
-//        builder.setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                dialog.cancel();
-//            }
-//        });
-//        AlertDialog alertDialog = builder.create();
-//        alertDialog.show();
-
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)){
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
-        }else {
-            super.onBackPressed();
+        } else {
+            final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Do you want to Exit");
+            builder.setCancelable(true);
+            builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
+                }
+            });
+            builder.setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+
         }
+
+
     }
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
         switch (menuItem.getItemId()) {
-            case R.id.nav_home:
+            case R.id.nav_cart:
+                Intent intent = new Intent(HomeActivity.this, CartActivity.class);
+                startActivity(intent);
                 break;
 
-
-            case R.id.nav_share:
-                Toast.makeText(this, "Share", Toast.LENGTH_SHORT).show();
+            case R.id.nav_logout:
+                startActivity(new Intent(this, MainActivity.class));
+                moveTaskToBack(true);
                 break;
+
+            case R.id.nav_profile:
+                Intent profile = new Intent(HomeActivity.this, SettingsActivity.class);
+                startActivity(profile);
+                break;
+
         }
 
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 }
+

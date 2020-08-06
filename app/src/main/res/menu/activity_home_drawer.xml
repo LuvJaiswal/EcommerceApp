@@ -8,23 +8,17 @@
             android:id="@+id/nav_cart"
             android:icon="@drawable/cart"
             android:title="@string/menu_cart" />
+
         <item
-            android:id="@+id/nav_orders"
-            android:icon="@drawable/order"
-            android:title="@string/menu_order"/>
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
-        <item
-            android:id="@+id/nav_tools"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="@string/menu_tools" />
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/profile"
+            android:title="Profile" />
 
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_directions_run_black_24dp"
             android:title="@string/logout" />
+
 
 
     </group>

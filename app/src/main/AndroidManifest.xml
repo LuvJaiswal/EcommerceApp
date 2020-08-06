@@ -14,7 +14,9 @@
         <activity android:name=".ConfirmOrder" />
         <activity android:name=".CartActivity" />
         <activity android:name=".ProductDetailsActivity" />
-        <activity android:name=".SettingsActivity" />
+        <activity android:name=".SettingsActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"
