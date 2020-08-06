@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -58,7 +59,7 @@ public class HomeActivity extends AppCompatActivity   implements NavigationView.
     RecyclerView.LayoutManager layoutManager;
 
     NavigationView navigationView;
-    android.widget.Toolbar toolbar;
+    androidx.appcompat.widget.Toolbar toolbar;
     ImageView imageViewServicing;
     ImageView imageViewEmergency;
     private Toolbar supportActionBar;
@@ -69,6 +70,14 @@ public class HomeActivity extends AppCompatActivity   implements NavigationView.
         setContentView(R.layout.activity_home);
 
         ProductRef = FirebaseDatabase.getInstance().getReference().child("Products");
+
+        drawerLayout = findViewById(R.id.drawer_layout);
+        setSupportActionBar(toolbar);
+
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
 
         FloatingActionButton fab = findViewById(R.id.fab);
 
@@ -225,26 +234,32 @@ public class HomeActivity extends AppCompatActivity   implements NavigationView.
 
     @Override
     public void onBackPressed() {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Do you want to Exit");
-        builder.setCancelable(true);
-        builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-                finish();
-            }
-        });
-        builder.setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
+//        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setMessage("Do you want to Exit");
+//        builder.setCancelable(true);
+//        builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                startActivity(intent);
+//                finish();
+//            }
+//        });
+//        builder.setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                dialog.cancel();
+//            }
+//        });
+//        AlertDialog alertDialog = builder.create();
+//        alertDialog.show();
+
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)){
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }else {
+            super.onBackPressed();
+        }
     }
 
     @Override
