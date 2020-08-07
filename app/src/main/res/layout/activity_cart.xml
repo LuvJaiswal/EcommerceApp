@@ -22,7 +22,7 @@
             android:layout_height="50dp"
             android:layout_marginTop="15dp"
             android:gravity="center"
-            android:text="TotalPrice = "
+            android:text=" Your List is empty, Please add product! "
             android:textColor="@android:color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
