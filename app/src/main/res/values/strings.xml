@@ -19,5 +19,12 @@
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
 
+    <string name="register">Register</string>
+    <string name="login">Login</string>
+    <string name="addQuantity">Add quantity</string>
+    <string name="MyCartList">My Cart List</string>
+    <string name="fillform">Submit your details</string>
+
+
 
 </resources>

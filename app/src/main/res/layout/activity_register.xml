@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,15 +7,49 @@
     tools:context=".RegisterActivity">
 
 
-    <ImageView
-        android:id="@+id/login_logo"
-        android:layout_width="300dp"
-        android:layout_height="100dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="41dp"
-        android:src="@color/colorAccent"
-        tools:ignore="MissingConstraints" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@color/pink"
+        tools:ignore="MissingConstraints">
+
+    </RelativeLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="110dp"
+        android:layout_marginEnd="64dp"
+        app:cardCornerRadius="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/relativeLayout"
+        android:elevation="20dp"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Register"
+            android:textSize="30sp"
+            android:textStyle="bold|italic"
+            android:gravity="center"
+            android:fontFamily="cursive"
+            android:textColor="@color/colorAccent"
+            />
+
+    </androidx.cardview.widget.CardView>
+
+
+
 
     <EditText
         android:id="@+id/Reg_ET_name"
@@ -27,7 +61,7 @@
         android:textColor="@color/colorPrimaryDark"
         android:background="@drawable/input_design"
         android:padding="20dp"
-        android:layout_below="@id/login_logo"
+        android:layout_below="@+id/cardView"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
@@ -93,4 +127,6 @@
        android:onClick="tv_alreadyaccount"
        />
 
-</RelativeLayout>
+    </RelativeLayout>
+
+</ScrollView>
