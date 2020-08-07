@@ -55,11 +55,11 @@ public class ConfirmOrder extends AppCompatActivity {
             Toast.makeText(this, "provide your name", Toast.LENGTH_SHORT).show();
         }
 
-        if(TextUtils.isEmpty(ship_phone.getText().toString())){
+       else if(TextUtils.isEmpty(ship_phone.getText().toString())){
             Toast.makeText(this, "provide your phone no.", Toast.LENGTH_SHORT).show();
         }
 
-        if(TextUtils.isEmpty(ship_address.getText().toString())){
+        else if(TextUtils.isEmpty(ship_address.getText().toString())){
             Toast.makeText(this, "provide your address", Toast.LENGTH_SHORT).show();
         }
         else {

@@ -12,33 +12,41 @@
         android:id="@+id/R1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:layout_alignParentTop="true">
+        android:layout_alignParentTop="true"
+        android:background="@color/colorPrimary">
 
 
         <TextView
             android:id="@+id/total_price"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="TotalPrice = "
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:textColor="@android:color/white"
-            android:gravity="center"
             android:layout_marginTop="15dp"
-            />
+            android:gravity="center"
+            android:text="TotalPrice = "
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
     </RelativeLayout>
 
-
+    <Button
+        android:id="@+id/next_process_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:text="Next"
+        android:visibility="invisible"
+        android:layout_alignParentBottom="true"
+        />
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cart_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/R1"
         android:layout_above="@+id/next_process_btn"
-        />
+        android:layout_below="@+id/R1"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="-6dp" />
 
     <TextView
         android:id="@+id/textView4"
@@ -51,21 +59,10 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="445dp"
         android:layout_marginEnd="16dp"
-        android:text="Final order has been confirmed, soon it will be verified and you get a call!!"
+        android:text="Your order has been confirmed, soon it will be verified and you get a call!"
         android:visibility="gone"
         android:textSize="30dp"
         />
-
-
-    <Button
-        android:id="@+id/next_process_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:text="Next"
-        android:layout_alignParentBottom="true"
-        />
-
 
 
 

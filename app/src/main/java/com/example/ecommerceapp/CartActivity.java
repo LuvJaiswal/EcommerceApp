@@ -50,8 +50,8 @@ public class CartActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        NextProcessBtn = (Button)findViewById(R.id.next_process_btn);
-        txtTotalAmount = (TextView)findViewById(R.id.total_price);
+        NextProcessBtn = findViewById(R.id.next_process_btn);
+        txtTotalAmount = findViewById(R.id.total_price);
 
         mytxt = findViewById(R.id.textView4);
 
@@ -144,6 +144,7 @@ public class CartActivity extends AppCompatActivity {
 
                                                         intent.putExtra("pid", model.getPid());
                                                         startActivity(intent);
+                                                        finish();
                                                     }
                                                 }
                                             });
@@ -163,6 +164,7 @@ public class CartActivity extends AppCompatActivity {
             @NonNull
             @Override
             public CartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                NextProcessBtn.setVisibility(View.VISIBLE);
               View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cart_items_layout,parent,false);
               CartViewHolder holder = new CartViewHolder(view);
               return holder;
