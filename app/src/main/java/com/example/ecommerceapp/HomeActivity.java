@@ -274,6 +274,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 break;
 
+            case R.id.nav_search:
+                startActivity(new Intent(this, SearchActivity.class));
+                break;
+
+
             case R.id.nav_logout:
                 startActivity(new Intent(this, MainActivity.class));
                 moveTaskToBack(true);
@@ -284,10 +289,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(profile);
                 break;
 
-            case R.id.nav_send:
-                Intent search = new Intent(HomeActivity.this, SearchActivity.class);
-                startActivity(search);
-                break;
 
         }
 
