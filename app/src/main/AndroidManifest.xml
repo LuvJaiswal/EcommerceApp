@@ -9,18 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SearchActivity"></activity>
+        <activity android:name=".AdminManageProductsActivity"></activity>
+        <activity android:name=".SearchActivity" />
         <activity android:name=".ShowProducts" />
         <activity android:name=".AdminCheckOrders" />
-        <activity android:name=".ConfirmOrder"
-            android:label="@string/fillform"
-            />
-        <activity android:name=".CartActivity"
-            android:label="@string/MyCartList"
-            />
-        <activity android:name=".ProductDetailsActivity"
-            android:label="@string/addQuantity"
-            />
+        <activity
+            android:name=".ConfirmOrder"
+            android:label="@string/fillform" />
+        <activity
+            android:name=".CartActivity"
+            android:label="@string/MyCartList" />
+        <activity
+            android:name=".ProductDetailsActivity"
+            android:label="@string/addQuantity" />
         <activity
             android:name=".SettingsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -31,12 +32,12 @@
         <activity android:name=".AdminAddNewProductActivity" />
         <activity android:name=".AdminCategoryActivity" />
         <activity android:name=".AdminActivity" />
-        <activity android:name=".RegisterActivity"
-            android:label="@string/register"
-            />
-        <activity android:name=".LoginActivity"
-            android:label="@string/login"
-            />
+        <activity
+            android:name=".RegisterActivity"
+            android:label="@string/register" />
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/login" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

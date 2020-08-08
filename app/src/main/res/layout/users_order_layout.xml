@@ -82,6 +82,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:text="Show the order List"
+            android:background="@color/yellow"
             android:textColorHighlight="#756B0F" />
 
     </RelativeLayout>

@@ -64,10 +64,21 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     ImageView imageViewEmergency;
     private Toolbar supportActionBar;
 
+    private String managePro = "null";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        if (bundle != null) {
+            managePro = getIntent().getExtras().get("Admin").toString();
+        }
+
 
         ProductRef = FirebaseDatabase.getInstance().getReference().child("Products");
 
@@ -94,101 +105,26 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
+
+        /***
+         * In video 35  23:58
+         */
+
+//         if (!managePro.equals("Admin")){
+//             username.setText(Prevalent.currentOnlineUser.getName());
+//             Picasso.get().load(Prevalent.currentOnlineUser.getImage()).placeholder()
+//         }
+
+
         recyclerView = findViewById(R.id.recycler_menu);
         recyclerView.setHasFixedSize(true);
 
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-//        Toast.makeText(this, "Welcome :" + Prevalent.currentOnlineUser.getName()
-//                , Toast.LENGTH_SHORT).show();
-
-        /*
-
-        imageViewEmergency = findViewById(R.id.emergency);
-        imageViewEmergency.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainPage.this,Bike.class);
-                startActivity(intent);
-            }
-        });
-        imageViewServicing = findViewById(R.id.service);
-        imageViewServicing.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainPage.this,Bike.class);
-                startActivity(intent);
-            }
-        });
-        //Hooks
-        drawerLayout = findViewById(R.id.drawer_layout);
-        navigationView = findViewById(R.id.nav_view);
-
-        toolbar = findViewById(R.id.toolbar);
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-*/
-
 
     }
 
-
-    //    public void setSupportActionBar(Toolbar toolbar) {
-//        this.supportActionBar = supportActionBar;
-//
-//        //Navigation Drawer Menu
-//
-//
-//        //Hide or show items
-//        Menu menu = navigationView.getMenu();
-//        menu.findItem(R.id.nav_logout).setVisible(true);
-//        menu.findItem(R.id.nav_profile).setVisible(true);
-//
-//
-//        navigationView.bringToFront();
-//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.navigation_drawer_open,R.string.navigation_drawer_close);
-//        drawerLayout.addDrawerListener(toggle);
-//        toggle.syncState();
-//
-//        navigationView.setNavigationItemSelectedListener(this);
-//
-//        navigationView.setCheckedItem(R.id.nav_home);
-//
-//    }
-
-
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//
-//        FirebaseRecyclerOptions<Products> options =
-//                new FirebaseRecyclerOptions.Builder<Products>()
-//                .setQuery(ProductRef, Products.class)
-//                .build();
-//
-//        FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter = new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
-//            @Override
-//            protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull Products model) {
-//                holder.txtProductName.setText(model.getPname());
-//                holder.txtProductDescription.setText(model.getDescription());
-//                holder.txtProductPrice.setText("Price = " + model.getPrice() + "Rs.");
-//            }
-//
-//            @NonNull
-//            @Override
-//            public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_service_detail, parent, false);
-//                ProductViewHolder holder = new ProductViewHolder(view);
-//                return holder;
-//            }
-//        };
-//
-//        recyclerView.setAdapter(adapter);
-//        adapter.startListening();
-//    }
 
     @Override
     protected void onStart() {
@@ -210,9 +146,17 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(HomeActivity.this, ProductDetailsActivity.class);
-                        intent.putExtra("pid", model.getPid());
-                        startActivity(intent);
+                        if (managePro.equals("Admin")) {
+                            Intent intent = new Intent(HomeActivity.this, AdminManageProductsActivity.class);
+                            intent.putExtra("pid", model.getPid());
+                            startActivity(intent);
+
+                        } else {
+                            Intent intent = new Intent(HomeActivity.this, ProductDetailsActivity.class);
+                            intent.putExtra("pid", model.getPid());
+                            startActivity(intent);
+                        }
+
                     }
                 });
 
