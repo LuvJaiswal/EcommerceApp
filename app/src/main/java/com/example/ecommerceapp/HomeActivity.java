@@ -100,8 +100,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this, CartActivity.class);
-                startActivity(intent);
+
+                if (!managePro.equals("Admin")) {
+                    Intent intent = new Intent(HomeActivity.this, CartActivity.class);
+                    startActivity(intent);
+                }
+
             }
         });
 
@@ -214,23 +218,26 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         switch (menuItem.getItemId()) {
             case R.id.nav_cart:
-                Intent intent = new Intent(HomeActivity.this, CartActivity.class);
-                startActivity(intent);
+                if (!managePro.equals("Admin")) {
+                    Intent intent = new Intent(HomeActivity.this, CartActivity.class);
+                    startActivity(intent);
+                }
                 break;
-
             case R.id.nav_search:
-                startActivity(new Intent(this, SearchActivity.class));
+                if (!managePro.equals("Admin")) {
+                    startActivity(new Intent(this, SearchActivity.class));
+                }
                 break;
-
-
             case R.id.nav_logout:
                 startActivity(new Intent(this, MainActivity.class));
                 moveTaskToBack(true);
                 break;
 
             case R.id.nav_profile:
-                Intent profile = new Intent(HomeActivity.this, SettingsActivity.class);
-                startActivity(profile);
+                if (!managePro.equals("Admin")) {
+                    Intent profile = new Intent(HomeActivity.this, SettingsActivity.class);
+                    startActivity(profile);
+                }
                 break;
 
 
