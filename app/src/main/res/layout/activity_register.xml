@@ -83,6 +83,22 @@
         android:layout_marginRight="20dp"
         />
 
+        <EditText
+            android:id="@+id/Reg_ET_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email Address"
+            android:textStyle="bold"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/colorPrimaryDark"
+            android:background="@drawable/input_design"
+            android:padding="20dp"
+            android:layout_below="@id/Reg_ET_phone"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            />
+
     <EditText
         android:id="@+id/Reg_ET_password"
         android:layout_width="match_parent"
@@ -93,7 +109,7 @@
         android:textColor="@color/colorPrimaryDark"
         android:background="@drawable/input_design"
         android:padding="20dp"
-        android:layout_below="@id/Reg_ET_phone"
+        android:layout_below="@id/Reg_ET_email"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
